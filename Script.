@@ -109,7 +109,6 @@ const BOT_COMMANDS = [
 const BOT_OWNER_COMMANDS = [
     ["loading", "toggles the MIDI loading progress audio, or text, on or off"],
     [BOT_ACTIVATOR, "toggles the public bot commands on or off"],
-    ["kickban [ID] [MINUTES]", "kickbans the user from the room for a specific minute."]
 ];
 const PRE_MSG = NAME + " (v" + VERSION + "): ";
 const PRE_HELP = PRE_MSG + "[Help]";
@@ -1017,17 +1016,7 @@ var loading = function(userId, yourId) {
     loadingOption = !loadingOption;
     mppChatSend(PRE_LOAD_MUSIC + " The MIDI loading progress is now set to " + (loadingOption ? "audio" : "text"));
 }
-var kickban = function(userId, yourId, arg) {
-    // only let the bot owner kickban people
-    if (userId != yourId) return;
-	if (!arg) {
-		mppChatSend(PRE_ERROR + " Please use this format: (!kickban) (User_ID) (Time) .");
-		return;
-	}
-	arg = arg.split(" ");
-	const minutes = +arg.pop();
-    if (typeof minutes == "number") MPP.client.sendArray([{m: "kickban", _id: arg.join(" "), ms: +minutes * 100 * 1000 }]); else mppChatSend(PRE_ERROR + " Invaild kickban time!");
-}
+
 var public = function(userId, yourId) {
     // only let the bot owner set if public bot commands should be on or not
     if (userId != yourId) return;
@@ -1107,7 +1096,6 @@ MPP.client.on('a', function (msg) {
             case "song": case "so": if ((isBotOwner || publicOption) && !preventsPlaying) song(); break;
             case "repeat": case "re": if ((isBotOwner || publicOption) && !preventsPlaying) repeat(); break;
             case "sustain": case "ss": if ((isBotOwner || publicOption) && !preventsPlaying) sustain(); break;
-            case "kickban": case "kb": kickban(userId, yourId, argumentsString); break;
             case "loading": case "lo": loading(userId, yourId); break;
             case BOT_ACTIVATOR: public(userId, yourId); break;
         }
@@ -1125,15 +1113,6 @@ MPP.client.on("ch", function(msg) {
         if (currentRoom.toUpperCase().indexOf(BOT_KEYWORD) == -1) stopSong();
     }
 });
-MPP.client.on('p', function(msg) {
-    var userId = msg._id;
-    // kick ban all the banned players
-    var bannedPlayers = BANNED_PLAYERS.length;
-    if (bannedPlayers > 0) {
-        var i;
-        for(i = 0; i < BANNED_PLAYERS.length; ++i) {
-            var bannedPlayer = BANNED_PLAYERS[i];
-            if (userId == bannedPlayer) MPP.client.sendArray([{m: "kickban", _id: bannedPlayer, ms: 3600000}]);
         }
     }
 });

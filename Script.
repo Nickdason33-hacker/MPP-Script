@@ -351,7 +351,7 @@ var humanMusic = function() {
         if (preventsLoadingMusic()) MPP.press("d5", 1);
         if (preventsLoadingMusic()) MPP.release("d5");
     }, 700);
-    
+
     setTimeout(function() {
         if (preventsLoadingMusic()) MPP.press("c5", 1);
         if (preventsLoadingMusic()) MPP.release("c5");
@@ -1113,9 +1113,7 @@ MPP.client.on("ch", function(msg) {
         if (currentRoom.toUpperCase().indexOf(BOT_KEYWORD) == -1) stopSong();
     }
 });
-        }
-    }
-});
+    
 
 // =============================================== INTERVALS
 

@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         (Name)
-// @namespace    (Name)
+// @name         Bot.
+// @namespace    Bot.
 // @version      0.0
 // @description  Plays MIDI files!
-// @author       (Name)
+// @author       User.
 // @include      /^https?://www\.multiplayerpiano\.com*/
 // @icon         https://github.com/Nickdason33-hacker/MPP-script./tree/main
 // @grant        GM_info

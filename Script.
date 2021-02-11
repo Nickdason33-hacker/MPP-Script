@@ -5,7 +5,7 @@
 // @description  Plays MIDI files!
 // @author       Dipper.
 // @include      /^https?://www\.multiplayerpiano\.com*/
-// @icon         http://seoexperts4all.com/wp-content/uploads/2014/11/Back-Link-Removal.png
+// @icon         <img src="https://e7.pngegg.com/pngimages/498/917/png-clipart-computer-icons-desktop-chatbot-icon-blue-angle.png" alt="Image result for bot logo"/>
 // @grant        GM_info
 // @grant        GM_getResourceText
 // @grant        GM_getResourceURL
